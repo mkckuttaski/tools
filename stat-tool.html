@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ultimate Statistical Calculator - Mean, Median, Mode, Std Dev, Chi-Square, T-Tests & More">
+    <meta name="keywords" content="statistics calculator, t-test calculator, chi-square calculator, statistical analysis tool">
+    <title>Ultimate Stats Calculator - All-in-One Analysis</title>
+    
+    <style>
+        :root {
+            --primary: #1a3c5e;
+            --secondary: #00aaff;
+            --accent: #ff4757;
+            --light: #f0f4f8;
+            --dark: #2d3436;
+            --shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #dfe6e9 0%, #b2bec3 100%);
+            min-height: 100vh;
+            padding: 30px;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        header Ascendant h1 {
+            color: var(--primary);
+            text-align: center;
+            padding: 30px 0 20px;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .tab-nav {
+            display: flex;
+            background: var(--light);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.2);
+            outline: none;
+        }
+
+        button {
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .results {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            padding: 30px;
+            background: var(--light);
+        }
+
+        .ad-space {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .tab-btn {
+                font-size: 1em;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ultimate Statistical Calculator</h1>
+
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="openTab('basic')">Basic Stats</button>
+            <button class="tab-btn" onclick="openTab('chiSquare')">Chi-Square</button>
+            <button class="tab-btn" onclick="openTab('tTest')">T-Tests</button>
+        </div>
+
+        <!-- Basic Stats Tab -->
+        <div id="basic" class="tab-content active">
+            <div class="input-group">
+                <label>Data Set</label>
+                <textarea id="basicInput" placeholder="Enter numbers separated by commas (e.g., 1, 2, 3, 4, 5)"></textarea>
+            </div>
+            <button onclick="calculateBasic()">Calculate</button>
+            <div id="basicResults" class="results"></div>
+        </div>
+
+        <!-- Chi-Square Tab -->
+        <div id="chiSquare" class="tab-content">
+            <div class="input-group">
+                <label>Observed Frequencies</label>
+                <textarea id="observedInput" placeholder="Enter observed frequencies (e.g., 10, 20, 15, 25)"></textarea>
+            </div>
+            <div class="input-group">
+                <label>Expected Frequencies (optional)</label>
+                <textarea id="expectedInput" placeholder="Enter expected frequencies (e.g., 17.5, 17.5, 17.5, 17.5)"></textarea>
+            </div>
+            <button onclick="calculateChiSquare()">Calculate</button>
+            <div id="chiSquareResults" class="results"></div>
+        </div>
+
+        <!-- T-Tests Tab -->
+        <div id="tTest" class="tab-content">
+            <div class="input-group">
+                <label>Data Set 1</label>
+                <textarea id="tTestInput1" placeholder="Enter first set (e.g., 1, 2, 3, 4, 5)"></textarea>
+            </div>
+            <div class="input-group">
+                <label>Data Set 2</label>
+                <textarea id="tTestInput2" placeholder="Enter second set (e.g., 2, 3, 4, 5, 6)"></textarea>
+            </div>
+            <button onclick="calculateTTests()">Calculate</button>
+            <div id="tTestResults" class="results"></div>
+        </div>
+
+        <div class="sidebar">
+            <div class="ad-space">
+                <!-- Google AdSense Code -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-1354773741641075"
+                        crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR-ADSENSE-ID"
+                     data-ad-slot="YOUR-AD-SLOT-ID"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            const tabs = document.getElementsByClassName('tab-content');
+            const btns = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+                btns[i].classList.remove('active');
+            }
+            document.getElementById(tabName).classList.add('active');
+            document.getElementsByClassName('tab-btn')[Array.from(btns).findIndex(btn => btn.onclick.toString().includes(tabName))].classList.add('active');
+        }
+
+        function calculateBasic() {
+            const input = document.getElementById('basicInput').value;
+            const data = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            if (data.length === 0) {
+                document.getElementById('basicResults').innerHTML = '<div class="result-card">Please enter valid numbers</div>';
+                return;
+            }
+
+            const mean = data.reduce((a, b) => a + b, 0) / data.length;
+            const sorted = [...data].sort((a, b) => a - b);
+            const median = sorted.length % 2 === 0 ?
+                (sorted[sorted.length/2 - 1] + sorted[sorted.length/2]) / 2 :
+                sorted[Math.floor(sorted.length/2)];
+            
+            const frequency = {};
+            let maxFreq = 0;
+            let modes = [];
+            data.forEach(num => {
+                frequency[num] = (frequency[num] || 0) + 1;
+                if (frequency[num] > maxFreq) {
+                    maxFreq = frequency[num];
+                    modes = [num];
+                } else if (frequency[num] === maxFreq) {
+                    modes.push(num);
+                }
+            });
+
+            const variance = data.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / data.length;
+            const stdDev = Math.sqrt(variance);
+
+            document.getElementById('basicResults').innerHTML = `
+                <div class="result-card"><strong>Mean:</strong> ${mean.toFixed(2)}</div>
+                <div class="result-card"><strong>Median:</strong> ${median.toFixed(2)}</div>
+                <div class="result-card"><strong>Mode:</strong> ${modes.length === data.length ? 'No mode' : modes.join(', ')}</div>
+                <div class="result-card"><strong>Standard Deviation:</strong> ${stdDev.toFixed(2)}</div>
+            `;
+        }
+
+        function calculateChiSquare() {
+            const observed = document.getElementById('observedInput').value.split(',')
+                .map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            let expected = document.getElementById('expectedInput').value.split(',')
+                .map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+
+            if (observed.length === 0) {
+                document.getElementById('chiSquareResults').innerHTML = '<div class="result-card">Please enter valid observed frequencies</div>';
+                return;
+            }
+
+            if (expected.length === 0) {
+                const total = observed.reduce((a, b) => a + b, 0);
+                expected = Array(observed.length).fill(total / observed.length);
+            }
+
+            if (observed.length !== expected.length) {
+                document.getElementById('chiSquareResults').innerHTML = '<div class="result-card">Observed and expected frequencies must have same length</div>';
+                return;
+            }
+
+            const chiSquare = observed.reduce((sum, obs, i) => {
+                return sum + Math.pow(obs - expected[i], 2) / expected[i];
+            }, 0);
+            const df = observed.length - 1;
+
+            document.getElementById('chiSquareResults').innerHTML = `
+                <div class="result-card"><strong>Chi-Square Statistic:</strong> ${chiSquare.toFixed(2)}</div>
+                <div class="result-card"><strong>Degrees of Freedom:</strong> ${df}</div>
+            `;
+        }
+
+        function calculateTTests() {
+            const data1 = document.getElementById('tTestInput1').value.split(',')
+                .map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            const data2 = document.getElementById('tTestInput2').value.split(',')
+                .map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+
+            if (data1.length === 0 || data2.length === 0) {
+                document.getElementById('tTestResults').innerHTML = '<div class="result-card">Please enter valid numbers for both sets</div>';
+                return;
+            }
+
+            const mean1 = data1.reduce((a, b) => a + b, 0) / data1.length;
+            const mean2 = data2.reduce((a, b) => a + b, 0) / data2.length;
+            const variance1 = data1.reduce((a, b) => a + Math.pow(b - mean1, 2), 0) / data1.length;
+            const variance2 = data2.reduce((a, b) => a + Math.pow(b - mean2, 2), 0) / data2.length;
+
+            const tUnpaired = (mean1 - mean2) / Math.sqrt((variance1/data1.length) + (variance2/data2.length));
+            const dfUnpaired = data1.length + data2.length - 2;
+
+            let tPaired = 'N/A';
+            let dfPaired = 'N/A';
+            if (data1.length === data2.length) {
+                const differences = data1.map((d1, i) => d1 - data2[i]);
+                const meanDiff = differences.reduce((a, b) => a + b, 0) / differences.length;
+                const varianceDiff = differences.reduce((a, b) => a + Math.pow(b - meanDiff, 2), 0) / (differences.length - 1);
+                tPaired = meanDiff / Math.sqrt(varianceDiff / differences.length);
+                dfPaired = differences.length - 1;
+            }
+
+            document.getElementById('tTestResults').innerHTML = `
+                <div class="result-card"><strong>Unpaired T-Test:</strong> t = ${tUnpaired.toFixed(2)}, df = ${dfUnpaired}</div>
+                <div class="result-card"><strong>Paired T-Test:</strong> ${data1.length === data2.length ? 
+                    `t = ${tPaired.toFixed(2)}, df = ${dfPaired}` : 'N/A (equal sample sizes required)'}</div>
+            `;
+        }
+
+        // Add font for better UI
+        document.head.innerHTML += '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">';
+    </script>
+</body>
+</html>
