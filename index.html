@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ultimate Statistical Calculator - Free online tool for mean, median, mode, standard deviation, chi-square, and t-tests. Accurate, fast, and easy to use.">
+    <meta name="keywords" content="statistical calculator, statistics tool, t-test calculator, chi-square calculator, mean median mode, free stats calculator">
+    <meta name="author" content="StatsMaster">
+    <meta name="robots" content="index, follow">
+    <title>Ultimate Stats Calculator - Free Statistical Analysis Tool</title>
+    
+    <style>
+        :root {
+            --primary: #1a3c5e;
+            --secondary: #00aaff;
+            --accent: #ff4757;
+            --light: #f0f4f8;
+            --dark: #2d3436;
+            --shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #dfe6e9 0%, #b2bec3 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background: linear-gradient(to bottom, rgba(26, 60, 94, 0.9), rgba(26, 60, 94, 0.7)), url('https://source.unsplash.com/random/1200x400?statistics');
+            background-size: cover;
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background: var(--light);
+            border-radius: 20px 20px 0 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: var(--dark);
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 0 20px;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            .container {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+            .feature-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ultimate Stats Calculator</h1>
+            <p>Your free, all-in-one solution for statistical analysis - from basic stats to advanced tests.</p>
+            <a href="calculator.html" class="cta-button">Start Calculating Now</a>
+        </header>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>Basic Statistics</h3>
+                <p>Calculate mean, median, mode, and standard deviation with ease.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Chi-Square Test</h3>
+                <p>Perform goodness-of-fit tests with observed and expected frequencies.</p>
+            </div>
+            <div class="feature-card">
+                <h3>T-Tests</h3>
+                <p>Run both paired and unpaired t-tests for comparing datasets.</p>
+            </div>
+            <div class="feature-card">
+                <h3>User-Friendly</h3>
+                <p>Intuitive tabbed interface, responsive design, and instant results.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 StatsMaster | <a href="calculator.html">Go to Calculator</a> | <a href="#">Privacy Policy</a></p>
+        </footer>
+    </div>
+
+    <script>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ultimate Statistical Calculator - Free online tool for mean, median, mode, standard deviation, chi-square, and t-tests. Accurate, fast, and easy to use.">
+    <meta name="keywords" content="statistical calculator, statistics tool, t-test calculator, chi-square calculator, mean median mode, free stats calculator">
+    <meta name="author" content="StatsMaster">
+    <meta name="robots" content="index, follow">
+    <title>Ultimate Stats Calculator - Free Statistical Analysis Tool</title>
+    
+    <style>
+        :root {
+            --primary: #1a3c5e;
+            --secondary: #00aaff;
+            --accent: #ff4757;
+            --light: #f0f4f8;
+            --dark: #2d3436;
+            --shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #dfe6e9 0%, #b2bec3 100%);
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background: linear-gradient(to bottom, rgba(26, 60, 94, 0.9), rgba(26, 60, 94, 0.7)), url('https://source.unsplash.com/random/1200x400?statistics');
+            background-size: cover;
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        .feature-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .feature-card a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background: var(--light);
+            border-radius: 20px 20px 0 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: var(--dark);
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 0 20px;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            .container {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+            .feature-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ultimate Stats Calculator</h1>
+            <p>Your free, all-in-one solution for statistical analysis - from basic stats to advanced tests.</p>
+            <a href="calculator.html" class="cta-button">Start Calculating Now</a>
+        </header>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>Basic Statistics</h3>
+                <p>Calculate mean, median, mode, and standard deviation with ease.</p>
+                <p><a href="calculator.html#basic">Try Basic Stats</a></p>
+            </div>
+            <div class="feature-card">
+                <h3>Chi-Square Test</h3>
+                <p>Perform goodness-of-fit tests with observed and expected frequencies.</p>
+                <p><a href="calculator.html#chiSquare">Try Chi-Square</a></p>
+            </div>
+            <div class="feature-card">
+                <h3>T-Tests</h3>
+                <p>Run both paired and unpaired t-tests for comparing datasets.</p>
+                <p><a href="calculator.html#tTest">Try T-Tests</a></p>
+            </div>
+            <div class="feature-card">
+                <h3>User-Friendly</h3>
+                <p>Intuitive tabbed interface, responsive design, and instant results.</p>
+                <p><a href="calculator.html">Explore Features</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 StatsMaster | 
+                <a href="calculator.html">Calculator Tool</a> | 
+                <a href="about.html">About Us</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="contact.html">Contact</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Add font
+        document.head.innerHTML += '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">';
+    </script>
+</body>
+</html>// Add font
+        document.head.innerHTML += '<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">';
+    </script>
+</body>
+</html>
